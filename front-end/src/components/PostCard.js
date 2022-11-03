@@ -1,0 +1,17 @@
+import { Link } from "react-router-dom";
+import "./NavbarStyles.css"
+
+// We are deconstructing props object directly in the parentheses of the function
+function PostCard ( { name, text, _id } ) {
+  
+  return (
+    <div className="PostCard card">
+      <Link to={`/posts/${_id}`}>
+        <button class="button-54">{name}</button>
+      </Link>
+      <h3 style={{  maxWidth: "5000px" }}>{text} </h3>
+    </div>
+  );
+}
+
+export default PostCard;
