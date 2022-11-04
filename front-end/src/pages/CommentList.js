@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AddPost from "./../components/AddPost";
+import AddComment from "./../components/AddComment";
 import PostCard from "./../components/PostCard";
 import CommentCard from "../components/CommentCard";
 
@@ -9,25 +9,25 @@ import CommentCard from "../components/CommentCard";
 const API_URL = "http://localhost:5005";
 
 
-function PostList() {
-  const [posts, setPosts] = useState([]);
+function CommentList() {
+  const [comments, setComments] = useState([]);
 
-  const getAllPosts = () => {
+  const getAllComments = () => {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
 
     // Send the token through the request "Authorization" Headers
     axios
       .get(
-      `${API_URL}/api/posts`,
+      `${API_URL}/api/comments`,
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )
-      .then((response) => setPosts(response.data))
+      .then((response) => setComments(response.data))
       .catch((error) => console.log(error));
   };
 
   const refreshPage = () => {
-    getAllPosts();
+    getAllComments();
   }
 
 
@@ -36,7 +36,7 @@ function PostList() {
   // We set this effect will run only once, after the initial render
   // by setting the empty dependency array - []
   useEffect(() => {
-    getAllPosts();
+    getAllComments();
   }, [] );
 
   
@@ -46,14 +46,14 @@ function PostList() {
       
      <br></br>
       
-      { posts.map((post, _id) => <PostCard key={_id} {...post} />  )} 
+      { comments.map((comment, _id) => <CommentCard key={_id} {...comment} />  )} 
  
     
-      <AddPost refreshPage={refreshPage} /> 
+      <AddComment refreshPage={refreshPage} /> 
   
     </div>
   );
 }
 
-export default PostList;
+export default CommentList;
 

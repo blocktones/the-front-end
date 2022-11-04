@@ -8,40 +8,40 @@ import { Link, useParams } from "react-router-dom";
 const API_URL = "http://localhost:5005";
 
 
-function PostDetails (props) {
-  const [post, setPost] = useState(null);
-  const { postId } = useParams();
+function CommentDetails (props) {
+  const [comment, setComment] = useState(null);
+  const { commentId } = useParams();
   
   
-  const getPost = () => {
+  const getComment = () => {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');
 
     // Send the token through the request "Authorization" Headers
     axios
       .get(
-        `${API_URL}/api/posts/${postId}`,
+        `${API_URL}/api/comments/${commentId}`,
         { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((response) => {
-        const onePost = response.data;
-        setPost(onePost);
+        const oneComment = response.data;
+        setComment(oneComment);
       })
       .catch((error) => console.log(error));
   };
   
   
   useEffect(()=> {
-    getPost();
+    getComment();
   }, );
 
   
   return (
-    <div className="PostDetails">
-      {post && (
+    <div className="CommentDetails">
+      {comment && (
         <>
-          <h1>{post.name}</h1>
-          <p>{post.text}</p>
+          <h1>{comment.text}</h1>
+          <p>{comment.description}</p>
         </>
       )}
 
@@ -50,15 +50,15 @@ function PostDetails (props) {
       
 
       <Link to="/posts">
-        <button class="button-54">Back to posts</button>
+        <button class="button-54">Back to comments</button>
       </Link>
           
-      <Link to={`/posts/edit/${postId}`}>
-        <button class="button-54">Edit Post</button>
+      <Link to={`/posts/edit/${commentId}`}>
+        <button class="button-54">Edit Comment</button>
       </Link>
       
     </div>
   );
 }
 
-export default PostDetails;
+export default CommentDetails;

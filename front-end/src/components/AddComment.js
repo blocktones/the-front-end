@@ -13,9 +13,9 @@ function AddComment(props) {
     e.preventDefault(); 
 
     // We need the post id when creating the new comment
-    const { postId } = props;
+    const { commentId } = props;
     // Create an object representing the body of the POST request
-    const requestBody = { title, description, postId };
+    const requestBody = { title, description, commentId };
 
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');
@@ -31,6 +31,7 @@ function AddComment(props) {
         // Reset the state to clear the inputs
         setTitle("");
         setDescription("");
+        props.refreshPage();
       
         // Invoke the callback function coming through the props
         // from the PostDetailsPage, to refresh the post details
@@ -50,7 +51,7 @@ function AddComment(props) {
           type="text"
           name="title"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.title)}
         />
 
         <label>Description:</label>
@@ -58,11 +59,13 @@ function AddComment(props) {
           type="text"
           name="description"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.description)}
         />
 
         <button class="button-54" type="submit">Add Comment</button>
       </form>
+
+ 
     </div>
   );
 }
