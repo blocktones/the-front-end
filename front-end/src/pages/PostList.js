@@ -4,8 +4,6 @@ import AddPost from "./../components/AddPost";
 import PostCard from "./../components/PostCard";
 import CommentCard from "../components/CommentCard";
 
-
-
 const API_URL = "http://localhost:5005";
 
 
@@ -47,10 +45,9 @@ function PostList() {
      <br></br>
       
       { posts.map((post, _id) => <PostCard key={_id} {...post} />  )} 
- 
     
       <AddPost refreshPage={refreshPage} /> 
-  
+      
     </div>
   );
 }

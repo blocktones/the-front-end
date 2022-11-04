@@ -19,10 +19,6 @@ function Navbar() {
           <Link to="/posts">
             <button class="button-74" >Posts</button>
           </Link>
-
-          <Link to="/comments">
-            <button class="button-74" >Comments</button>
-          </Link>
         
           <button class="button-74"  onClick={logOutUser}>Logout</button>
           <span>{user && user.name}</span>

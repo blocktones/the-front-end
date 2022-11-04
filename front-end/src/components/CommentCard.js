@@ -1,21 +1,13 @@
-import { Link } from "react-router-dom";
-import CommentCard from "./CommentCard";
-import "./NavbarStyles.css"
-
-// We are deconstructing props object directly in the parentheses of the function
-function PostCard ( { title, description, _id,} ) {
-  
+// We are deconstructing the props object directly in the parentheses of the function
+function CommentCard({ title, description }) {
   return (
-    <div className="CommenCard card">
-      <Link to={`/comments/${_id}`}>
-        <button class="button-54">{title}</button>
-      </Link>
-      <h3 style={{  maxWidth: "5000px" }}>{description} </h3>
-      <br></br>
-
-  
+    <div className="CommentCard">
+      <h3>{title}</h3>
+      <h4>Description:</h4>
+      <p>{description}</p>
     </div>
   );
 }
 
 export default CommentCard;
+

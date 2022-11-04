@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import AddComment from "../components/AddComment";
 
-
-
+import CommentCard from "../components/CommentCard";
 
 const API_URL = "http://localhost:5005";
 
@@ -46,8 +46,9 @@ function PostDetails (props) {
       )}
 
       
+      <AddComment refreshPost={getPost} postId={postId} />           
 
-      
+       { post && post.comments.map((comment) => <CommentCard key={comment._id} {...comment} /> )}  
 
       <Link to="/posts">
         <button class="button-54">Back to posts</button>

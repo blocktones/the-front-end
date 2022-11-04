@@ -10,7 +10,6 @@ import SignupPage from "./pages/Signup";
 import LoginPage from "./pages/LoginPage";
 import IsPrivate from "./components/IsPrivate";
 import IsAnon from "./components/IsAnon";
-import CommentList from "./pages/CommentList";
 
 function App() {
   return (
@@ -22,28 +21,17 @@ function App() {
 
         <Route
           path="/posts"
-          element={ <IsPrivate> <PostList /></IsPrivate> } 
+          element={ <IsPrivate> <PostList /> </IsPrivate> } 
         />
-
-        <Route
-          path="/comments"
-          element={ <IsPrivate> <CommentList /></IsPrivate> } 
-        />
-
 
         <Route
           path="/posts/:postId"
-          element={ <IsPrivate> <PostDetails /> <CommentList /> </IsPrivate> }
-        />
-
-<Route
-          path="/comments/:commentId"
-          element={ <IsPrivate> <PostDetails /> <CommentList /> </IsPrivate> }
+          element={ <IsPrivate> <PostDetails /> </IsPrivate> }
         />
 
         <Route
           path="/posts/edit/:postId"
-          element={ <IsPrivate> <EditPost /> <CommentList /></IsPrivate> } 
+          element={ <IsPrivate> <EditPost /> </IsPrivate> } 
         />
          
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
